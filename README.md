@@ -1,7 +1,10 @@
 # Experiment--05-Implementation-of-flipflops-using-verilog
-### AIM: To implement all the flipflops using verilog and validating their functionality using their functional tables
-### HARDWARE REQUIRED:  – PC, Cyclone II , USB flasher
-### SOFTWARE REQUIRED:   Quartus prime
+### AIM:
+To implement all the flipflops using verilog and validating their functionality using their functional tables
+### HARDWARE REQUIRED:  
+– PC, Cyclone II , USB flasher
+### SOFTWARE REQUIRED:  
+Quartus prime
 ### THEORY 
 SR Flip-Flop
 SR flip-flop operates with only positive clock transitions or negative clock transitions. Whereas, SR latch operates with enable signal. The circuit diagram of SR flip-flop is shown in the following figure.
@@ -102,39 +105,133 @@ Q(t+1)=T′Q(t)+TQ(t)′
 ⇒Q(t+1)=T⊕Q(t)
 
 ### Procedure
-/* write all the steps invloved */
+
+1.Using nand gates and wires construct sr flip flop.
 
 
+2.Repeat same steps to construct JK,D,T flipflops.
 
-### PROGRAM 
-/*
+
+3.Find Rtl logic and timing diagram for all flipflops.
+
+
+4.end the program.
+
+
+### PROGRAM 1:
+```
 Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
-*/
+Developed by: M Parshwanath
+RegisterNumber:  212221230073
 
+module sr (q,qbar,s,r,clk);
+input s,r,clk;
+output q,qbar;
+wire nand1_out;
+wire nand2_out;
+nand(nand1_out,clk,s);
+nand(nand2_out,clk,r);
+nand(q,nand1_out,qbar);
+nand(qbar,nand2_out,q);
+endmodule
 
-
-
-
+```
 
 ### RTL LOGIC FOR FLIPFLOPS 
 
-
-
-
-
-
-
+![ex5](output1.png)
 
 
 ### TIMING DIGRAMS FOR FLIP FLOPS 
 
+![ex5 1](td1.png)
+
+### PROGRAM 2:
+```
+Program for flipflops  and verify its truth table in quartus using Verilog programming.
+Developed by: M Parshwanath
+RegisterNumber:  212221230073
+
+module jk(q,qbar,k,j,clk);
+input j,k,clk;
+output q,qbar;
+wire nand1_out;
+wire nand2_out;
+nand(nand1_out,j,clk,qbar);
+nand(nand2_out,k,clk,q);
+nand(q,nand1_out,qbar,qbar);
+nand(qbar,nand2_out,q);
+endmodule
+
+```
+
+### RTL LOGIC FOR FLIPFLOPS 
+
+![ex5 2](output2.png)
+
+### TIMING DIGRAMS FOR FLIP FLOPS 
+
+![ex5 22](td2.png)
+
+
+### PROGRAM 3:
+```
+Program for flipflops  and verify its truth table in quartus using Verilog programming.
+Developed by: M Parshwanath
+RegisterNumber:  212221230073
+
+module d(q,qbar,d1,clk);
+input d1,clk;
+output q,qbar;
+wire n1;
+wire n2;
+not(x,d1);
+nand(n1,clk,d1);
+nand(n2,clk,x);
+nand(q,n2,qbar);
+nand(qbar,n1,q);
+endmodule 
+
+```
+
+### RTL LOGIC FOR FLIPFLOPS 
+
+![ex5 3](output3.png)
+
+
+### TIMING DIGRAMS FOR FLIP FLOPS 
+
+![ex5 33](td3.png)
 
 
 
+### PROGRAM 4:
+```
+Program for flipflops  and verify its truth table in quartus using Verilog programming.
+Developed by: M Parshwanath
+RegisterNumber:  212221230073
 
+module hs(t,qbar,q,clk);
+input t,clk;
+output q,qbar;
+wire n1,n2;
+nand(n1,t,clk,qbar);
+nand(n2,clk,t,q);
+nand(q,n1,qbar);
+nand(qbar,n2,q);
+endmodule
+```
+
+### RTL LOGIC FOR FLIPFLOPS 
+
+![ex5 4](output4.png)
+
+
+### TIMING DIGRAMS FOR FLIP FLOPS 
+
+![ex5 44](td4.png)
 
 
 
 ### RESULTS 
+Thus implementation of SR,JK,D and T flipflops using nand gates are done sucessfully.
